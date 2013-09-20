@@ -1,6 +1,6 @@
 // CS 440 MP1
 // @author Will Hempy
-// @netid hempy2
+// @netid hempy2 
 
 #include <iostream>
 #include <fstream>
