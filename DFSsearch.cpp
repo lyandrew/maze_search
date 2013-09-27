@@ -25,6 +25,7 @@ class DFSsearch {
 	int totalDots; //total number of points we have to capture
 	pair<int,int> beginning; //Where we begin
 	stack<pair<int, int> > solution; //Final trail we will follow from this algorithm
+	bool findPathRecur(pair<int, int> at);
 
 public:
 	void findPathDfs();
@@ -43,12 +44,23 @@ DFSsearch::DFSsearch(int **maz, int dots, pair<int, int> beg) {
 	beginning = beg;
 }
 DFSsearch::~DFSsearch() {
-	for (int i = 0; i < maze[].size; i++) {
+	int i = 0;
+	while (maze[i] != NULL) {
 		delete maze[i];
+		i++;
 	}
 	delete [] maze;
 }
 
-void DFSsearch::findPathBFS() {
+void DFSsearch::findPathDfs() {
+	
+}
 
+bool DFSsearch::findPathRecur(pair<int, int> at) {
+	int info = maze[at.first][at.second];
+	if (info == 0)
+		return false;
+	else if (info ==
+
+	return false;
 }

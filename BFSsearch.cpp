@@ -31,7 +31,7 @@ struct node {
 	}
 };
 class BFSsearch {
-	int **maze;
+	int maze[100][100];
 	int totalDots; //total number of points we have to capture
 	pair<int,int> beginning; //Where we begin
 	stack<pair<int, int> > solution; //Final trail we will follow from this algorithm
@@ -39,9 +39,9 @@ class BFSsearch {
 public:
 	void findPathBFS();
 	void findPathBfs(node * root);
-	stack<pair<int, int> > retriveSolution();
+	int[][] retriveSolution();
 	BFSsearch();
-	BFSsearch(int **m, int dots, pair<int, int> beg);
+	BFSsearch(int m[100][100], int dots, pair<int, int> beg);
 	~BFSsearch();
 };
 
@@ -143,7 +143,8 @@ void BFSsearch::solutionAssemble(node* at){
 /**
 *  returns the solution in the form of a stack.
 */
-stack<pair<int, int> >  BFSsearch::retriveSolution(){
+int[100][100]  BFSsearch::retriveSolution(){
+	
 	return solution;
 }
 /**
@@ -157,8 +158,10 @@ BFSsearch::BFSsearch() {
 *  Constructs a BFS searcher from a 2D array (m), total number of dots (dots)
 *  and the beginning spot on the maze (beg) in the form of a pair
 */
-BFSsearch::BFSsearch(int **m, int dots, pair<int, int> beg) {
-	maze = m;
+BFSsearch::BFSsearch(int m[100][100], int dots, pair<int, int> beg) {
+	for (int i = 0; i <100; i++)
+		for (int j = 0; j < 100; j++)
+			maze[i][j] = m[i][j];
 	totalDots = dots;
 	beginning = beg;
 }
@@ -166,8 +169,5 @@ BFSsearch::BFSsearch(int **m, int dots, pair<int, int> beg) {
 *  Deconstructor
 */
 BFSsearch::~BFSsearch() {
-	for (int i = 0; i < maze[].size; i++) {
-		delete maze[i];
-	}
-	delete [] maze;
+	
 }

@@ -2,11 +2,16 @@
 // @author Will Hempy
 // @netid hempy2 
 
+#include "unistd.h"
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <string>
 #include <stdio.h>
-#include <unistd.h>
+#include "BFSsearch.cpp"
+//#include "DFSsearch.cpp"
+//#include <unistd.h>
+
 
 //0 - wall
 //1 - blank
@@ -25,6 +30,9 @@ int main(int argc, char **argv) {
 	string str;
 	int bigMaze[100][100];
 	int row = 0;
+	int numDots = 0;
+	pair<int, int> Pacman;
+	
 	while (getline(myReadFile, str)) {
 	        int strSize = str.size();
 	        if (strSize == 0) break;
@@ -36,8 +44,10 @@ int main(int argc, char **argv) {
 				bigMaze[row][j] = 1;
 			else if( str[j] == '.' )
 				bigMaze[row][j] = 3;
-			else //Pacman
+			else {//Pacman
 				bigMaze[row][j] = 2;
+				Pacman = make_pair(row, j);
+			}
 	        }       
 	        row++;
 	        int numDots = 0;
@@ -52,6 +62,7 @@ int main(int argc, char **argv) {
 	                cout << bigMaze[i][j];
 	        }
 	        printf("\n");
+
 	}
-	      
+	BFSsearch(bigMaze,numDots, Pacman);
 }
