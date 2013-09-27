@@ -39,7 +39,7 @@ class BFSsearch {
 public:
 	void findPathBFS();
 	void findPathBfs(node * root);
-	int ** retriveSolution();
+	int** retriveSolution();
 	BFSsearch();
 	BFSsearch(int m[100][100], int dots, pair<int, int> beg);
 	~BFSsearch();
@@ -148,18 +148,8 @@ void BFSsearch::solutionAssemble(node* at){
 *  returns the solution in the form of a stack.
 */
 int** BFSsearch::retriveSolution(){
-	int** az = new int*[100];
-	for (int i = 0; i < 100; i++) {
-		az[i] = new int[100];
-		az[i][j] = 0;
-	}
-	pair<int, int> temp;
-	while (solution.size() > 0) {
-	        temp = solution.top();
-	        solution.pop();
-	        az[temp.first][temp.second] = 1;
-	}
-	return az;
+	
+	return solution;
 }
 /**
 *  Blank Constructor
