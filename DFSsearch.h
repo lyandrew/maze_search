@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stack>
 #include <queue>
-//#include <unistd.h>
+#include <unistd.h>
 
 
 //0 - wall
@@ -49,6 +49,6 @@ DFSsearch::~DFSsearch() {
 	delete [] maze;
 }
 
-void DFSsearch::findPathBFS() {
+void DFSsearch::findPathDFS() {
 
 }
