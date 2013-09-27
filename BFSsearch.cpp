@@ -39,7 +39,7 @@ class BFSsearch {
 public:
 	void findPathBFS();
 	void findPathBfs(node * root);
-	int[][] retriveSolution();
+	int ** retriveSolution();
 	BFSsearch();
 	BFSsearch(int m[100][100], int dots, pair<int, int> beg);
 	~BFSsearch();
@@ -59,8 +59,12 @@ void BFSsearch::findPathBFS() {
 *  until a dot is found and then stops going through that queue.
 */
 void BFSsearch::findPathBfs(node * root) {
+	int tempmaze[100][100];
+	for (int i = 0; i < 100; i++)
+		for (int j = 0; j < 100; j++) {
+			tempmaze[i][j] = maze[i][j];
+		}
 	root->parent = NULL;
-	//root->loc = beginning;
 	std::queue<node*> bfs;
 	bfs.push(root);
 	node *last = new node();
@@ -74,49 +78,49 @@ void BFSsearch::findPathBfs(node * root) {
 		int x = temp->loc.first;
 		int y = temp->loc.second;
 		node * newnode = new node();
-		if (maze[x - 1][y] != 0){
-			if (maze[x - 1][y] == 3){
+		if (tempmaze[x - 1][y] != 0){
+			if (tempmaze[x - 1][y] == 3){
 				last->loc = make_pair(x - 1, y);
-				maze[x - 1][y] = 0;
+				tempmaze[x - 1][y] = 0;
+				maze[x - 1][y] = 1;
 				last->parent = temp;
-				solutionAssemble(last);
 				break;
 			}
-			maze[x - 1][y] = 0;
+			tempmaze[x - 1][y] = 0;
 			bfs.push(new node(temp, make_pair(x - 1, y)));
 			
 		}
-		if (maze[x][y - 1] != 0){
-			if (maze[x][y - 1] == 3){
+		if (tempmaze[x][y - 1] != 0){
+			if (tempmaze[x][y - 1] == 3){
 				last->loc = make_pair(x, y - 1);
-				maze[x][y - 1] = 0;
+				tempmaze[x][y - 1] = 0;
+				maze[x][y - 1] = 1;
 				last->parent = temp;
-				solutionAssemble(last);
 				break;
 			}
-			maze[x][y - 1] = 0;
+			tempmaze[x][y - 1] = 0;
 			bfs.push(new node(temp, make_pair(x, y - 1)));
 		}
-		if (maze[x + 1][y] != 0){
-			if (maze[x + 1][y] == 3){
+		if (tempmaze[x + 1][y] != 0){
+			if (tempmaze[x + 1][y] == 3){
 				last->loc = make_pair(x + 1, y);
-				maze[x + 1][y] = 0;
+				tempmaze[x + 1][y] = 0;
+				maze[x + 1][y] = 1;
 				last->parent = temp;
-				solutionAssemble(last);
 				break;
 			}
-			maze[x + 1][y] = 0;
+			tempmaze[x + 1][y] = 0;
 			bfs.push(new node(temp, make_pair(x + 1, y)));
 		}
-		if (maze[x][y + 1] != 0){
-			if (maze[x][y + 1] == 3){
+		if (tempmaze[x][y + 1] != 0){
+			if (tempmaze[x][y + 1] == 3){
 				last->loc = make_pair(x, y + 1);
-				maze[x][y + 1] = 0;
+				tempmaze[x][y + 1] = 0;
+				maze[x][y + 1] = 1;
 				last->parent = temp;
-				solutionAssemble(last);
 				break;
 			}
-			maze[x][y + 1] = 0;
+			tempmaze[x][y + 1] = 0;
 				bfs.push(new node(temp, make_pair(x, y + 1)));
 		}
 		delete temp;
@@ -143,9 +147,19 @@ void BFSsearch::solutionAssemble(node* at){
 /**
 *  returns the solution in the form of a stack.
 */
-int[100][100]  BFSsearch::retriveSolution(){
-	
-	return solution;
+int** BFSsearch::retriveSolution(){
+	int** az = new int*[100];
+	for (int i = 0; i < 100; i++) {
+		az[i] = new int[100];
+		az[i][j] = 0;
+	}
+	pair<int, int> temp;
+	while (solution.size() > 0) {
+	        temp = solution.top();
+	        solution.pop();
+	        az[temp.first][temp.second] = 1;
+	}
+	return az;
 }
 /**
 *  Blank Constructor
