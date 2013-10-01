@@ -10,7 +10,6 @@
 //2 - packman
 using namespace std;
 
-<<<<<<< HEAD
 DFSsearch::DFSsearch() {
 	totalDots = -1;
 	beginning = make_pair(-1, -1);
@@ -61,10 +60,10 @@ void DFSsearch::findPathDfs(node* root) {
 	stack<node*> dfs;
 	dfs.push(root);
 	root->parent = NULL;
-	
+
 	node *last = new node();
 	node *temp = NULL;
-	
+
 	while (!dfs.empty()){
 		maxTreeDepth++;
 		int ihateyou = dfs.size();
@@ -75,7 +74,7 @@ void DFSsearch::findPathDfs(node* root) {
 		// Set our current position
 		int x = temp->loc.first;
 		int y = temp->loc.second;
-		
+
 		// MOVE UP
 		if (tempmaze[x - 1][y] != 0){
 			totalNodesExpanded++;
@@ -89,7 +88,7 @@ void DFSsearch::findPathDfs(node* root) {
 			tempmaze[x - 1][y] = 0;
 			dfs.push(new node(temp, make_pair(x - 1, y)));
 		}
-		
+
 		// MOVE LEFT
 		if (tempmaze[x][y - 1] != 0){
 			totalNodesExpanded++;
@@ -103,7 +102,7 @@ void DFSsearch::findPathDfs(node* root) {
 			tempmaze[x][y - 1] = 0;
 			dfs.push(new node(temp, make_pair(x, y - 1)));
 		}
-		
+
 		// MOVE DOWN
 		if (tempmaze[x + 1][y] != 0){
 			totalNodesExpanded++;
@@ -117,7 +116,7 @@ void DFSsearch::findPathDfs(node* root) {
 			tempmaze[x + 1][y] = 0;
 			dfs.push(new node(temp, make_pair(x + 1, y)));
 		}
-		
+
 		// MOVE RIGHT
 		if (tempmaze[x][y + 1] != 0){
 			totalNodesExpanded++;
@@ -259,51 +258,4 @@ int DFSsearch::rSF(){
 */
 int DFSsearch::returnNodesExpand() {
 	return totalNodesExpanded;
-}
-
-=======
-
-class DFSsearch {
-	int **maze;
-	int totalDots; //total number of points we have to capture
-	pair<int,int> beginning; //Where we begin
-	stack<pair<int, int> > solution; //Final trail we will follow from this algorithm
-	bool findPathRecur(pair<int, int> at);
-
-public:
-	void findPathDfs();
-	DFSsearch();
-	DFSsearch(int **maz, int dots, pair<int, int> beg);
-	~DFSsearch();
-};
-
-DFSsearch::DFSsearch() {
-	totalDots = -1;
-	beginning = make_pair(-1, -1);
-}
-DFSsearch::DFSsearch(int **maz, int dots, pair<int, int> beg) {
-	maze = maz;
-	totalDots = dots;
-	beginning = beg;
-}
-DFSsearch::~DFSsearch() {
-	int i = 0;
-	while (maze[i] != NULL) {
-		delete maze[i];
-		i++;
-	}
-	delete [] maze;
-}
-
-void DFSsearch::findPathDfs() {
-	
-}
-
-bool DFSsearch::findPathRecur(pair<int, int> at) {
-	int info = maze[at.first][at.second];
-	if (info == 0)
-		return false;
-	else if (info ==
-
-	return false;
 }
