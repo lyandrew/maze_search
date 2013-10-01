@@ -2,8 +2,7 @@
 ## @author Will Hempy
 ## @netid hempy2
 
-OBJS = AStarSearch.o main.o
-## DONT FORGET TO ADD DFSsearch.o GBFsearch.o ASTsearch.o above!
+OBJS = DFSsearch.o ASTsearch.o GBFsearch.o BFSsearch.o UCsearch.o main.o 
 EXENAME = main
 COMPILER = g++
 WARNINGS = -Wchar-subscripts -Wparentheses -Wreturn-type -Wmissing-braces -Wundef -Wshadow
@@ -16,21 +15,25 @@ all: $(EXENAME)
 
 $(EXENAME) : $(OBJS)
 	$(LINKER) $(OBJS) -o $(EXENAME)
-
-main.o: main.cpp AStarSearch.h 
+	
+main.o: main.cpp BFSsearch.h DFSsearch.h ASTsearch.h GBFsearch.h UCsearch.h
 	$(COMPILER) -c $(COMPILER_OPTS) main.cpp
 
-##BFSsearch.o: BFSsearch.cpp BFSsearch.h
-#	$(COMPILER) -c $(COMPILER_OPTS) BFSsearch.cpp
+BFSsearch.o: BFSsearch.cpp BFSsearch.h
+	$(COMPILER) -c $(COMPILER_OPTS) BFSsearch.cpp
 
-## DFSsearch.o: DFSsearch.cpp DFSsearch.h
-#	$(COMPILER) -c $(COMPILER_OPTS) DFSsearch.cpp
+DFSsearch.o: DFSsearch.cpp DFSsearch.h
+	$(COMPILER) -c $(COMPILER_OPTS) DFSsearch.cpp
 
-## GBFsearch.o: GBFsearch.cpp GBFsearch.h
-# 	$(COMPILER) -c $(COMPILER_OPTS) GBFsearch.cpp
+GBFsearch.o: GBFsearch.cpp GBFsearch.h
+	$(COMPILER) -c $(COMPILER_OPTS) GBFsearch.cpp
 
-   ASTsearch.o: AStarSearch.cpp AStarSearch.h
-	$(COMPILER) -c $(COMPILER_OPTS) AStarSearch.cpp
+ASTsearch.o: ASTsearch.cpp ASTsearch.h
+	$(COMPILER) -c $(COMPILER_OPTS) ASTsearch.cpp
+	
+UCsearch.o: UCsearch.cpp UCsearch.h
+	$(COMPILER) -c $(COMPILER_OPTS) UCsearch.cpp
+	
 clean:
 	rm -rf *.o $(EXENAME)
 tidy:
