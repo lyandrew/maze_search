@@ -35,13 +35,14 @@ void BFSsearch::findPathBfs() {
 *  set the square to a wall (0) so we don't go over it again.
 */
 void BFSsearch::findPathBfs(node * root) {
-	
+
 	// Copy the maze and initialize
 	int tempmaze[100][100];
 	for (int i = 0; i < 100; i++)
 		for (int j = 0; j < 100; j++) {
 			tempmaze[i][j] = maze[i][j];
 		}
+
 	// Data structure and root node added.
 	std::queue<node*> bfs;
 	bfs.push(root);
@@ -130,13 +131,16 @@ void BFSsearch::findPathBfs(node * root) {
 	temp = NULL;
 	delete last;
 	last = NULL;
-	while (!bfs.empty()) {		temp = bfs.front();
+	while (!bfs.empty()) {
+		temp = bfs.front();
 		bfs.pop();
 		delete temp;
-		temp = NULL;	}
+		temp = NULL;
+	}
 }
 /**
-*  This function is called once a solution is found. *  The path taken to the solution is thrown into a stack starting at the end
+*  This function is called once a solution is found. 
+*  The path taken to the solution is thrown into a stack starting at the end
 *  (first out is the root)
 */
 void BFSsearch::solutionAssemble(node* at){
@@ -151,13 +155,19 @@ stack<pair<int, int> > BFSsearch::rS() {
 }
 
 /**
-*  @return the solution in the form of a stack.*  Note: the memory from this function must be freed by the *  caller. 
+*  @return the solution in the form of a stack.
+*  Note: the memory from this function must be freed by the 
+*  caller. 
 */
 /*
-int** BFSsearch::retrieveSolution(){	
+int** BFSsearch::retrieveSolution(){
+	
    int** az = new int*[100];
-   for (int i = 0; i < 100; i++) {   	   	az[i] = new int[100];   	 for (int j = 0; j < 100; j++) {
-     	az[i][j] = 0;	   	 }
+   for (int i = 0; i < 100; i++) {
+   	   	az[i] = new int[100];
+   	 for (int j = 0; j < 100; j++) {
+     	az[i][j] = 0;	
+   	 }
    }
    pair<int, int> temp;
    while (solution.size() > 0) {
@@ -184,7 +194,11 @@ BFSsearch::BFSsearch() {
 *  and the beginning spot on the maze (beg) in the form of a pair
 */
 BFSsearch::BFSsearch(int m[100][100], int dots, pair<int, int> beg, int row, int col) {
-	for (int i = 0; i < row ; i++) {		for (int j = 0; j < col; j++) {			maze[i][j] = m[i][j];				}	}
+	for (int i = 0; i < row ; i++) {
+		for (int j = 0; j < col; j++) {
+			maze[i][j] = m[i][j];		
+		}
+	}
 	totalDots = dots;
 	beginning = beg;
 	totalNodesExpanded = 0;
@@ -229,4 +243,3 @@ int BFSsearch::rSF(){
 int BFSsearch::returnNodesExpand() {
 	return totalNodesExpanded;
 }
-

@@ -10,6 +10,7 @@
 //2 - packman
 using namespace std;
 
+<<<<<<< HEAD
 DFSsearch::DFSsearch() {
 	totalDots = -1;
 	beginning = make_pair(-1, -1);
@@ -209,10 +210,14 @@ stack<pair<int, int> > DFSsearch::rS() {
 	return solution;
 }
 /*
-int** DFSsearch::retrieveSolution(){	
+int** DFSsearch::retrieveSolution(){
+	
    int** az = new int*[100];
-   for (int i = 0; i < 100; i++) {   	   	az[i] = new int[100];   	 for (int j = 0; j < 100; j++) {
-     	az[i][j] = 0;	   	 }
+   for (int i = 0; i < 100; i++) {
+   	   	az[i] = new int[100];
+   	 for (int j = 0; j < 100; j++) {
+     	az[i][j] = 0;	
+   	 }
    }
    pair<int, int> temp;
    while (solution.size() > 0) {
@@ -256,3 +261,49 @@ int DFSsearch::returnNodesExpand() {
 	return totalNodesExpanded;
 }
 
+=======
+
+class DFSsearch {
+	int **maze;
+	int totalDots; //total number of points we have to capture
+	pair<int,int> beginning; //Where we begin
+	stack<pair<int, int> > solution; //Final trail we will follow from this algorithm
+	bool findPathRecur(pair<int, int> at);
+
+public:
+	void findPathDfs();
+	DFSsearch();
+	DFSsearch(int **maz, int dots, pair<int, int> beg);
+	~DFSsearch();
+};
+
+DFSsearch::DFSsearch() {
+	totalDots = -1;
+	beginning = make_pair(-1, -1);
+}
+DFSsearch::DFSsearch(int **maz, int dots, pair<int, int> beg) {
+	maze = maz;
+	totalDots = dots;
+	beginning = beg;
+}
+DFSsearch::~DFSsearch() {
+	int i = 0;
+	while (maze[i] != NULL) {
+		delete maze[i];
+		i++;
+	}
+	delete [] maze;
+}
+
+void DFSsearch::findPathDfs() {
+	
+}
+
+bool DFSsearch::findPathRecur(pair<int, int> at) {
+	int info = maze[at.first][at.second];
+	if (info == 0)
+		return false;
+	else if (info ==
+
+	return false;
+}
