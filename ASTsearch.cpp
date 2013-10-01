@@ -130,22 +130,22 @@ void ASTsearch::findPathAST(node * root) {
 				continue;
 			
 			float gval = current->g + 1;
-			bool gvalIsBest = false;
+			bool isGBest = false;
 			list<node*>::iterator findNeighIter2 = find(openList.begin(), openList.end(), neighbor);
 			node * foundOpen = *findNeighIter2;
 			
 			// first time we arrive at this node
 			if( neighbor->loc != foundOpen->loc) {
-				gvalIsBest = true;
+				isGBest = true;
 				neighbor->h = heuristic_cost_estimate(neighbor, goals[t]);
 				openList.push_back(neighbor);
 			}
 			else if(gval < neighbor->g) {
 				//we have already seen the node, but last time it had a worse g val
-				gvalIsBest = true;
+				isGBest = true;
 			}
 			
-			if(gvalIsBest) {
+			if(isGBest) {
 				neighbor->parent = current;
 				neighbor->g = gval;
 				neighbor->f = neighbor->g + neighbor->h;
